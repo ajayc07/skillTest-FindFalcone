@@ -1,0 +1,110 @@
+<div class="base-container">
+  <div class="base">
+
+    <header>
+        <div class="nav-items">
+          <div>Reset</div>
+          <div>GeekTrust Home</div>
+        </div>
+    </header>
+
+    <section>
+
+      <div class="section-container">
+
+      <div class="sequencing">
+        <h1>
+          SEQUENCING MISSION : <span class="mission-name"> FIND FALCONE </span>
+        </h1>
+      </div>
+
+      <form class="destinations-vehicles" [formGroup] = "journeyForm">
+       
+        <div class="set-journey">
+          <div class="planet">
+              <mat-select formControlName="planet_1" placeholder="Select Planet" (selectionChange) = "planetSelection($event , 'port_1')">
+                <mat-option *ngFor = "let planet of planetList" [value] = "planet.value">{{planet.name}}</mat-option>
+              </mat-select>
+            </div>
+
+          <div class="vehicle" *ngIf = "journeyForm.get('planet_1').value">
+              <mat-radio-group formControlName="vehicle_1" class="vehicle-group">
+                <mat-radio-button  class= "vehicle-radio" *ngFor = "let vehicle of vehicleList" [value] = "vehicle.value" (change) = "vehicleUpdate($event , 'port_1')">
+                  {{vehicle.name}} ({{vehicle.currentAvailablity}})
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+        </div>
+       
+        <div class="set-journey">
+          <div class="planet">
+              <mat-select formControlName="planet_2" placeholder="Select Planet" (selectionChange) = "planetSelection($event , 'port_2')">
+                <mat-option *ngFor = "let planet of planetList" [value] = "planet.value">{{planet.name}}</mat-option>
+              </mat-select>
+            </div>
+
+          <div class="vehicle" *ngIf = "journeyForm.get('planet_2').value">
+              <mat-radio-group formControlName="vehicle_2" class="vehicle-group">
+                <mat-radio-button  class= "vehicle-radio" *ngFor = "let vehicle of vehicleList" [value] = "vehicle.value" (change) = "vehicleUpdate($event , 'port_2')">
+                  {{vehicle.name}} ({{vehicle.currentAvailablity}})
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+        </div>
+
+       
+        <div class="set-journey">
+          <div class="planet">
+              <mat-select formControlName="planet_3" placeholder="Select Planet" (selectionChange) = "planetSelection($event , 'port_3')">
+                <mat-option *ngFor = "let planet of planetList" [value] = "planet.value">{{planet.name}}</mat-option>
+              </mat-select>
+            </div>
+
+          <div class="vehicle" *ngIf = "journeyForm.get('planet_3').value">
+              <mat-radio-group formControlName="vehicle_3" class="vehicle-group">
+                <mat-radio-button  class= "vehicle-radio" *ngFor = "let vehicle of vehicleList" [value] = "vehicle.value" (change) = "vehicleUpdate($event , 'port_3')">
+                  {{vehicle.name}} ({{vehicle.currentAvailablity}})
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="set-journey">
+            <div class="planet">
+                <mat-select formControlName="planet_4" placeholder="Select Planet" (selectionChange) = "planetSelection($event , 'port_4')">
+                  <mat-option *ngFor = "let planet of planetList" [value] = "planet.value">{{planet.name}}</mat-option>
+                </mat-select>
+              </div>
+  
+            <div class="vehicle" *ngIf = "journeyForm.get('planet_4' , 'port_4').value">
+                <mat-radio-group formControlName="vehicle_4" class="vehicle-group">
+                  <mat-radio-button  class= "vehicle-radio" *ngFor = "let vehicle of vehicleList" [value] = "vehicle.value" (change) = "vehicleUpdate($event , 'port_4')">
+                    {{vehicle.name}} ({{vehicle.currentAvailablity}})
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+          </div>
+
+      </form>
+
+      <div class="total-time">
+        <h1>TIME TAKEN : </h1>
+      </div>
+
+      <div class="button-container">
+          <button (click) = "launch()"> 
+            LAUNCH
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        Coding problem - https://www.geektrust.in/finding-falcone
+      </div>
+    </footer>
+
+  </div>
+</div>

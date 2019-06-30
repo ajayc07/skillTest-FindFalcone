@@ -1,0 +1,173 @@
+$fontStyleColor : #02bb71;
+$secondaryColor : #00C6FF;
+
+.base-container {
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    
+    .base {
+        height: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        
+        header {
+            height: 64px;
+            width: 100%;
+            
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            
+            background: black;
+            color: white;
+            
+            .nav-items {
+                
+                display: flex;
+                padding: 0 24px;
+                
+                div {
+                    height: 20px;
+                    margin-right: 8px;
+                    border: 2px solid $fontStyleColor;
+                    border-radius: 8px;
+                    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8px;
+                }
+                
+            }
+        }
+        
+        section {
+            
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            height: 100%;
+
+            background: black;
+
+            .section-container {
+
+                height: 100%;
+                overflow: auto;
+                
+            }
+
+            .sequencing {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $secondaryColor;
+
+                // .mission-name {
+
+                //     color: $secondaryColor;
+                // }
+                
+                h1 {
+                    border : 2px solid $fontStyleColor;
+                    font-size: 24px;
+                    padding: 8px;
+                    border-radius: 8px; 
+                }
+            }
+
+            .destinations-vehicles {
+                width: 100%;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+
+                .set-journey {
+
+                    height: 220px;
+                    width: 300px;
+                    border-radius: 5px;
+
+                    margin: 24px;
+
+                    background:  #FFF;
+
+                    .planet {
+                        padding: 10px;
+                        margin: 10px;
+                        border-radius: 8px;
+                        background: #02bb71;
+                    }
+
+                    .vehicle {
+                        padding: 10px;
+                        margin: 10px;
+                        border-radius: 8px;
+                        background: #02bb71;
+                        color: white;
+
+                        .vehicle-group {
+                            display: flex;
+                            flex-direction: column;
+
+                            .vehicle-radio {
+                                margin-top: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .total-time {
+                color: white;
+                display: flex;
+                justify-content: center;
+            
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+
+                button {
+
+                    outline: none;
+                    background: transparent;
+                    height: 100px;
+                    width: 200px;
+                    border: 2px solid $fontStyleColor;
+                    border-radius: 8px;
+                    color: $secondaryColor;
+                    font-size: 36px;
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        footer {
+            height: 10%;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: black;
+            
+            .footer-content {
+
+                border: 2px solid $fontStyleColor;
+                border-radius: 8px;
+                color: white;
+                padding: 12px;
+            } 
+        }
+    }
+}
