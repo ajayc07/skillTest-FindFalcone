@@ -1,5 +1,5 @@
-$fontStyleColor : #02bb71;
-$secondaryColor : #00C6FF;
+$firstColor : #36d1dc  ;
+$secondaryColor : #5b86e5;
 
 .base-container {
 
@@ -7,7 +7,16 @@ $secondaryColor : #00C6FF;
     width: 100%;
     margin: 0;
     padding: 0;
-    position: relative;
+
+
+    background-color:black;
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+      radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
     
     .base {
         height: 100%;
@@ -23,7 +32,7 @@ $secondaryColor : #00C6FF;
             justify-content: flex-end;
             align-items: center;
             
-            background: black;
+            // background: black;
             color: white;
             
             .nav-items {
@@ -34,7 +43,7 @@ $secondaryColor : #00C6FF;
                 div {
                     height: 20px;
                     margin-right: 8px;
-                    border: 2px solid $fontStyleColor;
+                    border: 2px solid $secondaryColor;
                     border-radius: 8px;
                     
                     display: flex;
@@ -45,73 +54,73 @@ $secondaryColor : #00C6FF;
                 
             }
         }
+
+        .scroll-content {
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+        }
         
         section {
-            
+
+            width: 100%;
             display: flex;
-            flex-direction: column;
-            flex: 1;
-            height: 100%;
 
-            background: black;
+            .section-container{
+                width: 70%;
 
-            .section-container {
+                .destinations-vehicles {
 
-                height: 100%;
-                overflow: auto;
-                
-            }
-
-            .sequencing {
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: $secondaryColor;
-
-                // .mission-name {
-
-                //     color: $secondaryColor;
-                // }
-                
-                h1 {
-                    border : 2px solid $fontStyleColor;
-                    font-size: 24px;
-                    padding: 8px;
-                    border-radius: 8px; 
+                    width: 100%;
+                    height: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0 0 0 24px;
                 }
-            }
 
-            .destinations-vehicles {
-                width: 100%;
-                
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-wrap: wrap;
+                .selection {
 
-                .set-journey {
+                    position: relative;
+                    background-image: linear-gradient(to top left, $firstColor ,  $secondaryColor);
+                    color: #fff!important;
+                    width: 70%;
+                    height: 85%;
+                    border-radius: 10px;
 
-                    height: 220px;
-                    width: 300px;
-                    border-radius: 5px;
+                    .current-selection {
+                        display: flex;
+                        flex: 1;
+                        margin-left: 20%;
+                    }
+                }
 
-                    margin: 24px;
+                .set-journey{
 
-                    background:  #FFF;
+                    position: absolute;
+                    width: 210px;
+                    height: 210px;
+                    top: 50%;
+                    left: -20%;
+                    z-index : 1;
+                    transform: perspective(1px) translateY(-50%);
+                    border-radius: 8px;
+                    box-shadow: 7px 5px 2px #3c354d;
+                    background-color: #201c29;
 
                     .planet {
                         padding: 10px;
                         margin: 10px;
                         border-radius: 8px;
-                        background: #02bb71;
+                        background: transparent;
                     }
 
                     .vehicle {
                         padding: 10px;
                         margin: 10px;
                         border-radius: 8px;
-                        background: #02bb71;
+                        background-color: #201c29;
                         color: white;
 
                         .vehicle-group {
@@ -123,47 +132,66 @@ $secondaryColor : #00C6FF;
                             }
                         }
                     }
+
                 }
+
             }
 
-            .total-time {
-                color: white;
-                display: flex;
-                justify-content: center;
             
-            }
-            .button-container {
+            .ready-launch {
+
+                width: 30%;
+                overflow: hidden;
+                position: relative;
+
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
+                align-items: center;
 
-                button {
+                .time-taken {
 
-                    outline: none;
-                    background: transparent;
-                    height: 100px;
-                    width: 200px;
-                    border: 2px solid $fontStyleColor;
-                    border-radius: 8px;
-                    color: $secondaryColor;
-                    font-size: 36px;
-                    cursor: pointer;
+                    width: 300px;
+                    height: 300px;
+                    border-radius: 50%;
+                    background-image: radial-gradient($firstColor ,  $secondaryColor);
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 20pt;
+                    font-weight: 800;
+                    color : white;
                 }
+
+                .rocket {
+                    position: absolute;
+                    top: 0;
+                    display: block;
+                    width: 100%;
+
+                  }
             }
+            
         }
         
         footer {
-            height: 10%;
+            height: 64px;
             width: 100%;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            background: black;
+            // background: black;
             
             .footer-content {
 
-                border: 2px solid $fontStyleColor;
+                border: 2px solid $secondaryColor;
                 border-radius: 8px;
                 color: white;
                 padding: 12px;
