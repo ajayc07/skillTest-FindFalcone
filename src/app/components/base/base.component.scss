@@ -1,5 +1,5 @@
-$firstColor : #36d1dc  ;
-$secondaryColor : #5b86e5;
+$firstColor : #141e30   ;
+$secondaryColor : #243b55;
 
 .base-container {
 
@@ -40,8 +40,8 @@ $secondaryColor : #5b86e5;
                 display: flex;
                 padding: 0 24px;
                 
-                div {
-                    height: 20px;
+                button {
+                    height: 50px;
                     margin-right: 8px;
                     border: 2px solid $secondaryColor;
                     border-radius: 8px;
@@ -50,8 +50,22 @@ $secondaryColor : #5b86e5;
                     align-items: center;
                     justify-content: center;
                     padding: 8px;
+
+                    color: white;
+
+                    outline: none;
+                    background: transparent;
+                } 
+
+                button:hover{
+                    background: $secondaryColor;
+                    cursor: pointer;
                 }
                 
+                button:active{
+                    background:rgba(36, 59, 85,0.5);
+                    cursor: pointer;
+                }
             }
         }
 
@@ -92,7 +106,91 @@ $secondaryColor : #5b86e5;
                     .current-selection {
                         display: flex;
                         flex: 1;
+                        flex-direction: column;
                         margin-left: 20%;
+                        height: 100%;
+                        width: 100%;
+
+                        .selected-items-calc {
+                            display: flex;
+                            flex: 1;
+                            height: calc(100% - 36px);
+                            width: 80%;
+                        }
+
+                        .selected-planet-details {
+                            width: 50%;
+
+                            .distance {
+                                height: 36px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                margin-right: 12px;
+                            }
+
+                            .svg-planet {
+                                height: calc(100% - 36px);
+                            }
+                        }
+
+                        .selected-vehicle-details {
+                        
+                            width: 50%;
+                            display: flex;
+                            margin-top: 24px;
+
+                            .svg-vechile {
+                                width: 50%;
+                            }
+
+                            .vechile-desc {
+                                width: 50%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-end;
+                            }
+                        }
+
+
+                        .time-taken {
+                            height: 36px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-left: -20%;
+                            margin-right: 20%;
+
+                            .time{
+                                margin-left: 25%;
+                            }
+
+                            .state {
+                                
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+
+                                div {
+                                    width: 8px;
+                                    height: 8px;
+                                    border-radius: 50%;
+                                    margin-right: 8px;
+                                    background: grey;
+                                }
+
+                                .yellow {
+                                    background: gold;
+                                }
+                                .green {
+                                    background: greenyellow;;
+                                }
+                                .red {
+                                    background: red;;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -149,12 +247,29 @@ $secondaryColor : #5b86e5;
                 justify-content: center;
                 align-items: center;
 
+                .total-time {
+                    width: 250px;
+                    height: 250px;
+                    background: rgba(36, 59, 85 , 0.2);
+                    color: aliceblue;
+                    position: fixed;
+                    top: 27%;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+
+                    h1 {
+                        font-size: 36pt;
+                    }
+
+                  }
+
                 .time-taken {
 
-                    width: 300px;
-                    height: 300px;
-                    border-radius: 50%;
-                    background-image: radial-gradient($firstColor ,  $secondaryColor);
+                    width: 250px;
+                    height: 250px;
+                    border-radius: 8px;
+                    background-image: radial-gradient($firstColor ,  grey);
 
                     display: flex;
                     flex-direction: column;
@@ -166,17 +281,31 @@ $secondaryColor : #5b86e5;
                     font-size: 20pt;
                     font-weight: 800;
                     color : white;
+
+                    position: fixed;
+                    top: 40%;
+                }
+
+                .time-taken-state {
+                    background: rgba(36, 59, 85, 1);
+                    cursor: pointer;
+                }
+
+                .time-taken-state:hover {
+                    background: rgba(36, 59, 85,0.9);
+                }
+
+                .time-taken-state:active {
+                    background: rgba(36, 59, 85,0.5);
                 }
 
                 .rocket {
-                    position: absolute;
-                    top: 0;
-                    display: block;
-                    width: 100%;
-
+                    width: 70%;
+                    height: 70%;
                   }
-            }
-            
+
+                }
+                
         }
         
         footer {

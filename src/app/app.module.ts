@@ -9,11 +9,13 @@ import { BaseComponent } from './components/base/base.component';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MissionStatusComponent } from './components/mission-status/mission-status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent
+    BaseComponent,
+    MissionStatusComponent
   ],
   imports: [
     BrowserModule,

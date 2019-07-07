@@ -4,6 +4,7 @@ export interface Planet {
     name : string;
     distance : number;
     selected? : boolean;
+    color? : string;
 }
 
 export interface Vehicle {
@@ -19,8 +20,5 @@ export interface Journey {
 
     selectedPlanet? : Planet;
     selectedVehicle? : Vehicle;
-    // timeTake : number;
-    // vechileSpeed: number;
-    // planetDistance : number;
     
 }
