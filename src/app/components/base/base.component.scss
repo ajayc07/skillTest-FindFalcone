@@ -38,16 +38,18 @@ $secondaryColor : #243b55;
                     justify-content: center;
                     align-items: center;
                     padding: 0 0 0 24px;
+
                 }
-
+                
                 .selection {
-
+                    
                     position: relative;
                     background-image: linear-gradient(to top left, $firstColor ,  $secondaryColor);
                     color: #fff!important;
                     width: 70%;
                     height: 85%;
                     border-radius: 10px;
+                    transition: 1s;
 
                     .current-selection {
                         display: flex;
@@ -137,6 +139,12 @@ $secondaryColor : #243b55;
                                 }
                             }
                         }
+                    }
+                }
+
+                .destinations-vehicles:hover {
+                    .selection {
+                        background-image: linear-gradient(to top left,  $secondaryColor, $firstColor);
                     }
                 }
 
@@ -233,8 +241,10 @@ $secondaryColor : #243b55;
                 }
 
                 .time-taken-state {
+                    transform: rotateY(360deg);
                     background: rgba(36, 59, 85, 1);
                     cursor: pointer;
+                    transition: 3s;
                 }
 
                 .time-taken-state:hover {

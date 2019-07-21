@@ -1,8 +1,53 @@
-.mission-status-container {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+$firstColor : #141e30   ;
+$secondaryColor : #243b55;
 
-    color: aliceblue; //remove
+:host {
+    display: flex;
+    flex: 1;
+}
+
+.mission-status-container {
+
+    margin: 0;
+    padding: 24px;
+    display: flex;
+    flex: 1;
+
+    .mission-status {
+        
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        background-color: #243b55;
+        color: aliceblue; //remove
+    }
+
+    .pod-container {
+
+        border: 1px solid white;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        
+
+        .pod-card {
+            border: 1px solid white;
+            width: 275px;
+            height: 275px;
+            margin: 8px;
+            flex: 1;
+
+            transition: 0.5s;
+        }
+
+        .pod-card:hover {
+            flex: 2;
+        }
+
+    }
+
 }
