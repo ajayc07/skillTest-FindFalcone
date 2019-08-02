@@ -11,8 +11,8 @@ export interface Vehicle {
 
     value : string;
     name : string;
-    currentAvailablity : number;
-    maxDistance : number;
+    total_no : number;
+    max_distance : number;
     speed : number;
 }
 

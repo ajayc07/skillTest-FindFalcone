@@ -6,6 +6,10 @@ import { Planet, Vehicle, Journey } from 'src/app/model/app-model';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared-service';
+
+import { MOCK_PLANETS, MOCK_VECHILES } from 'src/app/mocks/mocks';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base',
@@ -30,10 +34,14 @@ export class BaseComponent implements OnInit {
 
   public loadCompleted = 0;
 
+  public isLoading : boolean = false;
+
+  public loaderMessage : string = '';
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private _router: Router
+    private _formBuilder : FormBuilder,
+    private _router : Router,
+    private _store : SharedService
   ) { 
     for (let index = 0; index < 4; index++) {
       this.selectedJourney.push({
@@ -46,8 +54,15 @@ export class BaseComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
+
+    this._store.getReset().subscribe((value) => {
+
+      if(value.isReset) {
+        this.reset();
+      }
+    })
+
     this.getPlanetList();
-    this.getVehicleList();
   }
 
 
@@ -75,72 +90,29 @@ export class BaseComponent implements OnInit {
 
   public getPlanetList() : void {
 
-    this.planetList = [
-      {
-        value : 'DonLon',
-        name : 'DonLon',
-        distance : 100
-      },
-      {
-        value : 'Enchai',
-        name : 'Enchai',
-        distance : 200
-      },
-      {
-        value : 'Jebing',
-        name : 'Jebing',
-        distance : 300
-      },
-      {
-        value : 'Sapir',
-        name : 'Sapir',
-        distance : 400
-      },
-      {
-        value : 'Lerbin',
-        name : 'Lerbin',
-        distance : 500
-      },
-      {
-        value : 'Pingosor',
-        name : 'Pingosor',
-        distance : 600
-      },
-    ];
+    this.isLoading = true;
+    this.loaderMessage = 'Searching for near by planets...';
+
+    // this.mockGetPlanetList().subscribe((response) => {
+    this._store.getPlanetList().subscribe((response) => {
+
+      this.planetList = response;
+      this.isLoading = false;
+      this.getVehicleList();
+    })
   };
 
   public getVehicleList() : void {
 
-    this.vehicleList = [
-      {
-        value : 'Space Pod',
-        name : 'Space Pod',
-        currentAvailablity : 2,
-        maxDistance : 200,
-        speed : 2
-      },
-      {
-        value : 'Space Rocket',
-        name : 'Space Rocket',
-        currentAvailablity : 1,
-        maxDistance : 300,
-        speed : 3
-      },
-      {
-        value : 'Space Shuttle',
-        name : 'Space Shuttle',
-        currentAvailablity : 1,
-        maxDistance :400,
-        speed : 5
-      },
-      {
-        value : 'Space Ship',
-        name : 'Space Ship',
-        currentAvailablity : 2,
-        maxDistance : 600,
-        speed : 10
-      }
-    ];
+    this.isLoading = true;
+    this.loaderMessage = 'Checking availablity of vehicles...';
+
+    // this.mockGetVechileList().subscribe((response) => {
+      this._store.getVechileList().subscribe((response) => {
+
+      this.vehicleList = response;
+      this.isLoading = false;
+    })
   }
 
   public vehicleUpdate(event : MatRadioChange , fromPort : number) : void {
@@ -149,17 +121,17 @@ export class BaseComponent implements OnInit {
 
       if (this.journeyForm.controls.journey['controls'][ fromPort].controls.vehicle.value) {
 
-        if (vehicle.value === this.journeyForm.controls.journey['controls'][ fromPort].controls.vehicle.value ) {
-            vehicle.currentAvailablity += 1;
+        if (vehicle.name === this.journeyForm.controls.journey['controls'][ fromPort].controls.vehicle.value ) {
+            vehicle.total_no += 1;
         }
       }
 
-      if (vehicle.value === event.value ) {
+      if (vehicle.name === event.value ) {
 
         this.selectedJourney[fromPort].selectedVehicle = vehicle;
 
-        if (vehicle.currentAvailablity) {
-          vehicle.currentAvailablity -= 1;
+        if (vehicle.total_no) {
+          vehicle.total_no -= 1;
           this.getJourneyDetails();
         }
       }
@@ -178,16 +150,16 @@ export class BaseComponent implements OnInit {
     console.log('Planet update' , event , fromPort);
 
     
-    if (this.selectedJourney[fromPort].selectedPlanet && this.selectedJourney[fromPort].selectedPlanet.value) {
+    if (this.selectedJourney[fromPort].selectedPlanet && this.selectedJourney[fromPort].selectedPlanet.name) {
         
-      if (this.selectedJourney[fromPort].selectedPlanet.value){
+      if (this.selectedJourney[fromPort].selectedPlanet.name){
         this.selectedJourney[fromPort].selectedPlanet.selected = false;
       }
     }
 
     this.planetList.forEach((planet , index) => {
 
-      if (planet.value === event.value ) {
+      if (planet.name === event.value ) {
 
         this.selectedJourney[fromPort].selectedPlanet = planet;
         planet.selected = true;
@@ -204,7 +176,26 @@ export class BaseComponent implements OnInit {
   public launch() : void {
 
     console.log('Launch' , this.selectedJourney);
-    this._router.navigateByUrl('result');
+
+    this.isLoading = true;
+    this.loaderMessage = 'Searching for Falcone....';
+
+    this._store.getToken().subscribe((response) => {
+      console.log('token' , response);
+    });
+
+    this._store.commonStorage = {
+      status : Math.floor(Math.random() * Math.floor(6) / 2)  ? 'Success' : 'Fail',
+      planetName : 'Pingosor',
+      planetdistance : 600,
+      vehicleName : 'Space Shuttle',
+      timeTaken : '30'
+    }
+
+    setTimeout(() => {
+      this.isLoading = false;
+      this._router.navigateByUrl('result');
+    },4000)
   }
 
   public getJourneyDetails() : void {
@@ -238,6 +229,37 @@ export class BaseComponent implements OnInit {
 
     this.loadCompleted = 0;
     this.totalTimeTaken = 0;
+  }
+
+
+  public mockGetPlanetList() : any {
+        
+    let observable = Observable.create((obs) => {
+      setTimeout(() => {
+        obs.next(MOCK_PLANETS);
+        obs.complete();
+      },3000)
+    })
+
+    return observable;
+
+  }
+
+  public mockGetVechileList() : any {
+        
+    let observable = Observable.create((obs) => {
+
+      obs.next(MOCK_VECHILES);
+        obs.complete();
+      // setTimeout(() => {
+      //   obs.next(MOCK_VECHILES);
+      //   obs.complete();
+      // },2000)
+ 
+    })
+
+    return observable;
+
   }
 
 

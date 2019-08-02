@@ -1,17 +1,16 @@
-<div class="main-container">
+<!-- <mission-loader [ngClass]="{hideLoader :  !bsStorage?.isLoading , showLoader : bsStorage?.isLoading }"></mission-loader> -->
 
-    
+<div class="main-container">
     <header>
         <div class="nav-items">
             <button (click)="reset()">Reset</button>
-            <button>GeekTrust Home</button>
+            <button (click)="gtHome()"> GeekTrust Home</button>
         </div>
     </header>
     
     <div class="route">
         <router-outlet></router-outlet>
     </div>
-    
     <footer>
         <div class="footer-content">
             Coding problem - https://www.geektrust.in/finding-falcone

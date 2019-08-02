@@ -1,14 +1,37 @@
 <div class="mission-status-container">
   <div class="mission-status">
-      <h2>Mission Status</h2>
-      <div class="pod-container">
-            <div class="pod-card"></div>
-            <div class="pod-card"></div>
-            <div class="pod-card"></div>
-            <div class="pod-card"></div>
+    <h2>Mission Status</h2>
+    <div class="pod-container">
+      <div class="pod-card">
+        <div class="staus">
+          <h1>{{joruneyStatus?.status}}</h1>
+          <h2>{{joruneyStatus?.status === 'Success' ? 'Found in : ' +  joruneyStatus.planetName : 'Unable to find Falcone this trip'}}</h2>
+          <h3>Total journey time : 200</h3>
+        </div>
+
+        <div *ngIf="joruneyStatus?.status === 'Success'" class="journey-details">
+          <h1>Status of mission : SUCCESS!!!!</h1>
+
+          <ul>
+            <li>Planet Name : {{joruneyStatus.planetName}}</li>
+            <li>Planet distance : {{joruneyStatus.planetdistance}}</li>
+            <li>Vechile Name : {{joruneyStatus.vehicleName}}
+            <li>Time taken : {{joruneyStatus.timeTaken}}hrs</li>
+          </ul>
+
+
+          <h3> Congratulations On Finding Falcone, King Shan Is Mighty Pleased !! </h3>
+        </div>
+
+        <div *ngIf="joruneyStatus?.status === 'Fail'" class="journey-details">
+          <h3> Don't lose hope give one more try on Finding Falcone </h3>
+        </div>
+
       </div>
-      
-      <h2>Total journey time : 200</h2>
-      <h2> SUCCESS!!!!   Congratulations On Finding Falcone King Shan Is Mighty Pleased !! </h2>
+    </div>
+
+    <div class="rest-button">
+      <button (click) = "reset()">Start again</button>
+    </div>
   </div>
 </div>

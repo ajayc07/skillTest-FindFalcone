@@ -118,13 +118,14 @@ $secondaryColor : #243b55;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
+                                position: relative;
 
 
                                 div {
                                     width: 8px;
                                     height: 8px;
                                     border-radius: 50%;
-                                    margin-right: 8px;
+                                    margin-right: 12px;
                                     background: grey;
                                 }
 
@@ -132,10 +133,47 @@ $secondaryColor : #243b55;
                                     background: gold;
                                 }
                                 .green {
-                                    background: greenyellow;;
+                                    background: greenyellow;
                                 }
                                 .red {
-                                    background: red;;
+                                    background: red;
+                                    animation: blink 1s infinite;
+                                }
+
+                                .impossible-journey {
+                                    display: none;
+                                }
+
+                                @keyframes blink {
+                                    0% { 
+                                        width: 4px;
+                                        height: 4px;
+                                        background: grey;
+                                    }
+                                    100% { 
+                                        width: 12px;
+                                        height: 12px;
+                                        background: red;
+                                    }
+                                }
+                            }
+
+                            .state:hover{
+                                .impossible-journey {
+                                    h3 {
+                                        margin: 0.5em;
+                                    }
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    position: absolute;
+                                    z-index: 1;
+                                    background: white;
+                                    color: black;
+                                    width: 200px;
+                                    padding:24px;
+                                    border-radius: 8px;
                                 }
                             }
                         }

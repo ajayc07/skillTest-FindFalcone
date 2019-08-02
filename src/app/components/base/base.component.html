@@ -1,3 +1,5 @@
+<mission-loader *ngIf= "isLoading" [loaderMessage] = "loaderMessage"></mission-loader>
+
 <div class="base-container">
   <div class="base">
 
@@ -39,7 +41,7 @@
                           Speed : {{selectedJourney[i].selectedVehicle?.speed}} MM/hr
                         </div>
                         <div class="vehicle">
-                          Max Dist: {{selectedJourney[i].selectedVehicle?.maxDistance}} MM
+                          Max Dist: {{selectedJourney[i].selectedVehicle?.max_distance}} MM
                         </div>
                       </div>
                     </div>
@@ -53,7 +55,10 @@
                     </div> 
                     <div class="state">
                       <div [ngClass]="{'yellow' : selectedJourney[i].selectedPlanet}"></div>
-                      <div [ngClass]="{'green' : selectedJourney[i].selectedPlanet && selectedJourney[i].selectedVehicle , 'red' : (selectedJourney[i].selectedVehicle && selectedJourney[i].selectedVehicle?.maxDistance < selectedJourney[i].selectedPlanet?.distance)}"></div>
+                      <div [ngClass]="{'green' : selectedJourney[i].selectedPlanet && selectedJourney[i].selectedVehicle , 'red' : (selectedJourney[i].selectedVehicle && selectedJourney[i].selectedVehicle?.max_distance < selectedJourney[i].selectedPlanet?.distance)}"></div>
+                      <span *ngIf="(selectedJourney[i].selectedVehicle && selectedJourney[i].selectedVehicle?.max_distance < selectedJourney[i].selectedPlanet?.distance)" class="impossible-journey">
+                      <h3>Alert</h3>Journey cannot be completed since the planet distance is greater than selected vehicle's maximum distance coverage
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -62,7 +67,7 @@
                   <div class="planet">
                     <mat-select formControlName="planet" placeholder="Select Planet"
                       (selectionChange)="planetSelection($event , i)">
-                      <mat-option *ngFor="let planet of planetList" [value]="planet.value" [disabled]='planet.selected'>
+                      <mat-option *ngFor="let planet of planetList" [value]="planet.name" [disabled]='planet.selected'>
                         {{planet.name}}</mat-option>
                     </mat-select>
                   </div>
@@ -70,9 +75,9 @@
                   <div class="vehicle" *ngIf="journeyForm.controls.journey.controls[i].controls.planet.value">
                     <mat-radio-group formControlName="vehicle" class="vehicle-group">
                       <mat-radio-button class="vehicle-radio" *ngFor="let vehicle of vehicleList"
-                        [value]="vehicle.value" (change)="vehicleUpdate($event , i)"
-                        [disabled]="!vehicle.currentAvailablity">
-                        {{vehicle.name}} ({{vehicle.currentAvailablity}})
+                        [value]="vehicle.name" (change)="vehicleUpdate($event , i)"
+                        [disabled]="!vehicle.total_no">
+                        {{vehicle.name}} ({{vehicle.total_no}})
                       </mat-radio-button>
                     </mat-radio-group>
                   </div>
@@ -133,7 +138,7 @@
     <ng-container *ngTemplateOutlet="Launch" > </ng-container>
   </div>
 
-  <svg *ngIf="vehicle === 'Space Rocket'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+  <svg *ngIf="vehicle === 'Space rocket'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999"
     style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
     <g fill="white">
@@ -192,7 +197,7 @@
 
   </svg>
 
-  <svg *ngIf="vehicle === 'Space Shuttle'" id="raket" enable-background="new 0 0 900 900" height="512"
+  <svg *ngIf="vehicle === 'Space shuttle'" id="raket" enable-background="new 0 0 900 900" height="512"
     viewBox="0 0 900 900" width="512" xmlns="http://www.w3.org/2000/svg">
     <path style="fill:white;"
       d="m134.35 113.685c2.209 0 4-1.791 4-4v-4.961c0-2.209-1.791-4-4-4s-4 1.791-4 4v4.961c0 2.209 1.791 4 4 4z" />
@@ -220,7 +225,7 @@
       d="m70 203.499h19.496c2.209 0 4-1.791 4-4s-1.791-4-4-4h-19.496c-2.209 0-4 1.791-4 4s1.791 4 4 4z" />
   </svg>
 
-  <svg *ngIf="vehicle === 'Space Ship'" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+  <svg *ngIf="vehicle === 'Space ship'" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.563 213.563"
     style="enable-background:new 0 0 213.563 213.563;" xml:space="preserve">
     <path style="fill:white;"
@@ -241,7 +246,7 @@
   	c0.041-0.039,0.085-0.073,0.125-0.113l18.29-18.291c2.236-2.236,3.469-5.21,3.469-8.373S212.33,116.775,210.116,114.561z" />
   </svg>
 
-  <svg *ngIf="vehicle === 'Space Pod'" id="Layer-1" xmlns="http://www.w3.org/2000/svg"
+  <svg *ngIf="vehicle === 'Space pod'" id="Layer-1" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.563 213.563"
     style="enable-background:new 0 0 213.563 213.563;" xml:space="preserve">
     <path style="fill:white;" d="M218.893,199.299l-5.888-47.081l-23.391-18.712c0.122-0.741,0.23-1.486,0.23-2.255

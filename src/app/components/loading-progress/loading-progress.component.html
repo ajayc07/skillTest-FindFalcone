@@ -1,0 +1,41 @@
+<div class="loader-container">
+
+    <div class="loading">
+        <div class="visual">
+            <svg width=100% height=100%>
+                <circle r="20" cx="50%" cy="50%" fill="orange"></circle>
+
+                <path d="M 100, 120 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" stroke="black" stroke-width="2"
+                    fill="none" id="planetry_1" />
+
+                <path d="M 70, 120 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" stroke="black" stroke-width="2"
+                    fill="none" id="planetry_2" />
+
+                <path d= "M 50, 120 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" stroke="black" stroke-width="2" fill="none" id="planetry_3"/>
+
+
+                <circle r="9" fill ="#2D1418">
+                    <animateMotion dur="2s" repeatCount="indefinite">
+                        <mpath xlink:href="#planetry_1" />
+                    </animateMotion>
+                </circle>
+
+                <circle r="10" fill="#3E66F9">
+                    <animateMotion dur="3s" repeatCount="indefinite">
+                        <mpath xlink:href="#planetry_2" />
+                    </animateMotion>
+                </circle>
+
+                <circle r="10.5" fill="#97979F">
+                    <animateMotion dur="4s" repeatCount="indefinite">
+                        <mpath xlink:href="#planetry_3" />
+                    </animateMotion>
+                </circle>
+            </svg>
+        </div>
+        <div class="message">
+            {{loaderMessage}}
+        </div>
+    </div>
+
+</div>
