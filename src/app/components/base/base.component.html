@@ -1,11 +1,16 @@
+<!-- Loader -->
 <mission-loader *ngIf= "isLoading" [loaderMessage] = "loaderMessage"></mission-loader>
 
+<!-- main-section -->
 <div class="base-container">
   <div class="base">
 
     <div class="scroll-content">
+
       <section>
-        <div class="section-container">
+
+        <!-- planet-vehicle-selection -->
+        <div class="section-container"  *ngIf = "!isError || loadCompleted === 100">
 
           <form [formGroup]="journeyForm">
 
@@ -64,6 +69,7 @@
                 </div>
 
                 <div class="set-journey">
+
                   <div class="planet">
                     <mat-select formControlName="planet" placeholder="Select Planet"
                       (selectionChange)="planetSelection($event , i)">
@@ -90,10 +96,12 @@
 
         </div>
 
-        <div class="ready-launch">
+        <!-- Launch button -->
+        <div class="ready-launch ready-launch-mobile" *ngIf = "!isError || loadCompleted == 100">
 
 
           <div class="total-time">
+              <button class="mobile-find-btn" [class.enable-btn] = "loadCompleted == 100" (click)="launch()" >Find Falcone</button>
               <h1>{{totalTimeTaken}} hr</h1>
           </div>
 
@@ -106,15 +114,29 @@
           </div>
 
         </div>
+
+        <div class="retry" *ngIf="isError && loadCompleted !== 100">
+            <h1>Oops !! Some thing went wrong</h1>
+            <button class="try-again-btn" (click)="getPlanetList()">Try Again</button>
+        </div>
+        
+        <div class="retry-toast" *ngIf="isError && loadCompleted === 100">
+            <div class="toast">{{errorMessage}}</div>
+        </div>
+
       </section>
+
+
 
     </div>
 
   </div>
 </div>
 
+<!-- End of main-section -->
 
 
+<!-- Planet and vehicle SVG with ng-template (can be replaced with image). Below SVG are taken from internet -->
 
 <ng-template #Planet let-color="color">
   <svg enable-background="new 0 0 700 700" id="Layer_1" version="1.1" viewBox="0 0 800 800" xml:space="preserve"

@@ -7,5 +7,25 @@ html , body {
     padding: 0;
     display: flex;
     flex: 1;
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: black; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #243b55; 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(49, 88, 133); 
+    }
 }
 

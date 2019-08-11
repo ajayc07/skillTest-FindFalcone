@@ -22,3 +22,10 @@ export interface Journey {
     selectedVehicle? : Vehicle;
     
 }
+
+export interface Result {
+    
+    planet_name? : string;
+    status ?: string;
+    error?: string;
+}

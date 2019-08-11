@@ -4,26 +4,25 @@
     <div class="pod-container">
       <div class="pod-card">
         <div class="staus">
-          <h1>{{joruneyStatus?.status}}</h1>
-          <h2>{{joruneyStatus?.status === 'Success' ? 'Found in : ' +  joruneyStatus.planetName : 'Unable to find Falcone this trip'}}</h2>
-          <h3>Total journey time : 200</h3>
+          <h1>{{joruneyStatus?.status === 'success' ?  'Success!!!!' : ''}}</h1>
+          <h2>{{joruneyStatus?.status === 'success' ? 'Found in : ' +  joruneyStatus.planetName : 'Unable to find Falcone this trip'}}</h2>
+          <h3>Total journey time :{{joruneyStatus.journeyTime}} </h3>
         </div>
 
-        <div *ngIf="joruneyStatus?.status === 'Success'" class="journey-details">
+        <div *ngIf="joruneyStatus?.status === 'success'" class="journey-details">
           <h1>Status of mission : SUCCESS!!!!</h1>
 
           <ul>
-            <li>Planet Name : {{joruneyStatus.planetName}}</li>
-            <li>Planet distance : {{joruneyStatus.planetdistance}}</li>
-            <li>Vechile Name : {{joruneyStatus.vehicleName}}
-            <li>Time taken : {{joruneyStatus.timeTaken}}hrs</li>
+            <li><h4>Planet Name : {{joruneyStatus.planetName}}</h4></li>
+            <li><h4>Planet distance : {{joruneyStatus.planetdistance}}</h4></li>
+            <li><h4>Vechile Name : {{joruneyStatus.vehicleName}}</h4></li>
           </ul>
 
 
           <h3> Congratulations On Finding Falcone, King Shan Is Mighty Pleased !! </h3>
         </div>
 
-        <div *ngIf="joruneyStatus?.status === 'Fail'" class="journey-details">
+        <div *ngIf="joruneyStatus?.status !== 'success'" class="journey-details">
           <h3> Don't lose hope give one more try on Finding Falcone </h3>
         </div>
 

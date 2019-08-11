@@ -59,6 +59,11 @@ $secondaryColor : #243b55;
 
                 outline: none;
                 background: transparent;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
             } 
 
             button:hover{
@@ -104,11 +109,22 @@ $secondaryColor : #243b55;
         } 
     }
 
+
+    @media (max-width : 600px) {
+        .route {
+            height: calc(100% - 64px);
+        }
+        footer {
+            display: none;
+        }
+    }
+
 }
-.hideLoader {
-    display: none;
-}
-.showLoader{
-    display: block;
-}
+
+    .hideLoader {
+        display: none;
+    }
+    .showLoader{
+        display: block;
+    }
 

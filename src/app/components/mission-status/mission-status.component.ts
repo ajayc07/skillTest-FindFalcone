@@ -10,13 +10,31 @@ import { SharedService } from 'src/app/services/shared-service';
 })
 export class MissionStatusComponent implements OnInit {
 
+
+  /**
+   * Journey details
+   * @type {*}
+   * @memberof MissionStatusComponent
+   */
   public joruneyStatus : any;
 
+
+  /**
+   * Creates an instance of MissionStatusComponent.
+   * @param {Router} _router
+   * @param {SharedService} _store
+   * @memberof MissionStatusComponent
+   */
   constructor(
     private _router: Router,
     private _store : SharedService
   ) { }
 
+
+  /**
+   * Angular life cycle
+   * @memberof MissionStatusComponent
+   */
   ngOnInit() {
     
     this._store.getReset().subscribe((value) => {
@@ -30,6 +48,11 @@ export class MissionStatusComponent implements OnInit {
 
   }
 
+
+  /**
+   * Resetting the form => navigates to home page
+   * @memberof MissionStatusComponent
+   */
   public reset() : void {
     this._store.setReset(false);
     this._router.navigateByUrl('launch');

@@ -10,6 +10,11 @@ import { SharedService } from './services/shared-service';
 
 export class AppComponent {
 
+  /**
+   * Title to be showed in tab
+   * @type {*}
+   * @memberof AppComponent
+   */
   public title = 'Finding Falcone';
   
   public constructor(
@@ -17,11 +22,12 @@ export class AppComponent {
   ) {
   }
 
+  /**
+   * Setting the is reset to true
+   * @type {*}
+   * @memberof AppComponent
+   */
   public reset() : void {
     this._store.setReset(true);
-  }
-
-  public gtHome() : void {
- //
   }
 }
